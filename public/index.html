@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+		/>
+		<title>Directory</title>
+
+		<link rel="shortcut icon" content="favicon.webp" />
+
+		<script src="/scram/scramjet.all.js"></script>
+		<script src="/baremux/index.js"></script>
+
+		<link rel="stylesheet" href="index.css" />
+		<style>
+			#dir-wrap { max-width: 1100px; margin: 0 auto; padding: 16px; font-family: system-ui, sans-serif; }
+			#dir-wrap h2 { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: #94a3b8; margin: 22px 0 8px; }
+			#dir-tabs { display: flex; flex-wrap: wrap; gap: 6px; background: #fff; padding: 6px; border-radius: 12px; width: fit-content; margin: 12px 0 4px; }
+			#dir-tabs button { border: 0; background: none; padding: .5rem 1rem; border-radius: 8px; font-weight: 600; color: #64748b; cursor: pointer; }
+			#dir-tabs button.on { background: #0f172a; color: #fff; }
+			.dir-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+			.dir-tile { display: flex; align-items: center; gap: 12px; background: #fff; color: #0f172a; padding: 12px; border-radius: 12px; box-shadow: 0 3px 0 #cbd5e1; cursor: pointer; border: 0; text-align: left; font: inherit; }
+			.dir-tile:hover { transform: translateY(-2px); }
+			.dir-tile b { display: block; }
+			.dir-tile small { color: #64748b; }
+			.dir-ic { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; font-weight: 800; font-size: 1.1rem; flex: none; }
+			.browsing #dir-wrap, .browsing .logo-wrapper, .browsing .desc, .browsing #sj-form, .browsing footer { display: none; }
+			#dir-home { position: fixed; top: 10px; right: 10px; z-index: 2147483647; display: none; padding: .5rem .9rem; border-radius: 8px; border: 0; background: #0f172a; color: #fff; cursor: pointer; font-weight: 600; }
+			.browsing #dir-home { display: block; }
+			#dir-lock { margin: 28px auto; display: block; padding: .6rem 1.2rem; border-radius: 8px; border: 0; background: #334155; color: #e2e8f0; cursor: pointer; }
+		</style>
+		<script src="register-sw.js" defer></script>
+		<script src="search.js" defer></script>
+		<script src="index.js" defer></script>
+		<script src="directory.js" defer></script>
+	</head>
+
+	<body>
+		<button id="dir-home" onclick="location.href='/'">Home</button>
+
+		<form id="sj-form" class="flex-center">
+			<input
+				id="sj-search-engine"
+				value="https://duckduckgo.com/?q=%s"
+				type="hidden"
+			/>
+			<input id="sj-address" type="text" placeholder="Enter a URL or search" />
+		</form>
+		<div class="desc left-margin">
+			<p id="sj-error"></p>
+			<pre id="sj-error-code"></pre>
+		</div>
+
+		<div id="dir-wrap">
+			<div id="dir-tabs"></div>
+			<div id="directory"></div>
+			<form method="POST" action="/logout"><button id="dir-lock">Lock</button></form>
+		</div>
+	</body>
+</html>
